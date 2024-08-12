@@ -1,3 +1,10 @@
+import java.util.scanner
+
+/**
+    The Interfacer class is responsible for handling user input and output.
+    It interacts with the user by displaying menus annd capturing their choices.
+**/
+
 public class Interfacer {
     public static void welcomer() {
         System.out.println("Select one of the following options: ");
