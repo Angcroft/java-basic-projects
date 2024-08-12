@@ -4,6 +4,9 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Table of Contents
+- [Description](#description)
+- [Listed Projects](#listed-projects)
+- [About the Use of this Project](#about-the-use-of-this-project)
 
 ## Description
 
