@@ -1,47 +1,71 @@
-import java.util.scanner
+import java.util.Scanner;
 
 /**
-    The Interfacer class is responsible for handling user input and output.
-    It interacts with the user by displaying menus annd capturing their choices.
-**/
-
+ * The Interfacer class is responsible for handling user input and output.
+ * It interacts with the user by displaying menus and capturing their choices.
+ */
 public class Interfacer {
-    public static void welcomer() {
-        System.out.println("Select one of the following options: ");
+
+    private final Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Displays the main menu and returns the user's choice.
+     * 
+     * @return the selected option as an integer.
+     */
+    public int displayMainMenu() {
+        System.out.println("Main Menu:");
         System.out.println("1. Generate Password");
-        System.out.println("2. Personalize Password");
-        System.out.println("3. Exit");
+        System.out.println("2. Customize Settings");
+        System.out.println("3. Exit Program");
+        System.out.print("Enter choice: ");
+        return getUserChoice();
     }
 
-    public static void customizer() {
-        System.out.println("Please select the following customizer option: ");
-        System.out.println("1. Substract characters");
+    /**
+     * Displays the customize settings menu and returns the user's choice.
+     * 
+     * @return the selected option as an integer.
+     */
+    public int displayCustomizeMenu() {
+        System.out.println("Customize Menu:");
+        System.out.println("1. Remove Characters");
         System.out.println("2. Add Characters");
-        System.out.println("3. Return to main menu");
+        System.out.println("3. Return to Main Menu");
+        System.out.print("Enter choice: ");
+        return getUserChoice();
     }
 
-    public static void substracter() {
-        System.out.println("Please select what kind of character you want to substract: ");
-        System.out.println("1. Upper");
-        System.out.println("2. Lower");
-        System.out.println("3. Digit");
-        System.out.println("4. Special");
-        System.out.println("5. Cancel");
+    /**
+     * Gets a choice from the user and ensures it is a valid integer.
+     * 
+     * @return the user's choice as an integer.
+     */
+    private int getUserChoice() {
+        while (!scanner.hasNextInt()) {
+            System.out.print("Invalid input. Please enter a number: ");
+            scanner.next(); // Discard invalid input
+        }
+        return scanner.nextInt();
     }
 
-    public static void adder() {
-        System.out.println("Please select what kind of character you want to add: ");
-        System.out.println("1. Upper");
-        System.out.println("2. Lower");
-        System.out.println("3. Digit");
-        System.out.println("4. Special");
-        System.out.println("5. Cancel");
+    /**
+     * Prompts the user to enter characters to remove or add.
+     * 
+     * @param prompt The message to display to the user.
+     * @return the characters entered by the user as a String.
+     */
+    public String getCharacters(String prompt) {
+        System.out.print(prompt);
+        return scanner.next();
     }
 
-    public static void passGenerated() {
-        System.out.println("Password generated. What you want to do next?: ");
-        System.out.println("1. Generate another password");
-        System.out.println("2. Personalize password");
-        System.out.println("3. Exit");
+    /**
+     * Displays a message to the user.
+     * 
+     * @param message The message to display.
+     */
+    public void displayMessage(String message) {
+        System.out.println(message);
     }
 }
