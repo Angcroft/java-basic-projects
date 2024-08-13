@@ -1,27 +1,53 @@
+import java.util.Scanner;
+
+/**
+ * The Interfacer class provides methods for interacting with the user through the console.
+ * It handles input and output operations to facilitate the conversion process.
+ */
 public class Interfacer {
-    static void mainMenu() {
-        System.out.println("Welcome to BitDec Convert! Please input one of the options below:");
-        System.out.println("1. Binary to Decimal");
-        System.out.println("2. Decimal to Binary");
-        System.out.println("3. Binary to HEX");
-        System.out.println("4. Exit");
+
+    private final Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Prompts the user to enter a binary string and returns it.
+     * 
+     * @return the binary string entered by the user.
+     */
+    public String getBinaryInput() {
+        System.out.print("Enter a binary number: ");
+        return scanner.next();
     }
 
-    static void binToDec() {
-        System.out.println("Input one of the following options:");
-        System.out.println("1. Convert Binary to Decimal");
-        System.out.println("2. Return to Menu");
+    /**
+     * Prompts the user to enter a decimal number and returns it.
+     * The method ensures that the input is a valid integer.
+     * 
+     * @return the decimal number entered by the user.
+     */
+    public int getDecimalInput() {
+        System.out.print("Enter a decimal number: ");
+        while (!scanner.hasNextInt()) { // Validate that the input is an integer
+            System.out.print("Invalid input. Please enter a valid decimal number: ");
+            scanner.next(); // Discard invalid input
+        }
+        return scanner.nextInt(); // Return the valid decimal input
     }
 
-    static void decToBin() {
-        System.out.println("Input one of the following options:");
-        System.out.println("1. Convert Decimal to Binary");
-        System.out.println("2. Return to Menu");
+    /**
+     * Displays the decimal equivalent of a binary number to the user.
+     * 
+     * @param decimal the decimal number to be displayed.
+     */
+    public void showDecimalOutput(int decimal) {
+        System.out.println("Decimal equivalent: " + decimal);
     }
 
-    static void binToHex() {
-        System.out.println("Input one of the following options:");
-        System.out.println("1. Convert Binary to Hexadecimal");
-        System.out.println("2. Return to Menu");
+    /**
+     * Displays the binary equivalent of a decimal number to the user.
+     * 
+     * @param binary the binary string to be displayed.
+     */
+    public void showBinaryOutput(String binary) {
+        System.out.println("Binary equivalent: " + binary);
     }
 }
