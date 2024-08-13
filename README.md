@@ -17,7 +17,7 @@ This repository is a curated collection of Java projects designed for beginners 
 | Name | Description |
 | --- | --- |
 | [Javakey](https://github.com/Angcroft/java-basic-projects/tree/main/javakey) | A program that generates random passwords. |
-| BitDec-Convert | Converts binary numbers to decimal and vice versa. |
+| [BitDec-Convert](https://github.com/Angcroft/java-basic-projects/tree/main/bitdec_convert) | Converts binary numbers to decimal and vice versa. |
 | JavaDoro | A pomodoro timer which can start and configure the timers. |
 | IMCHelper | Calculates Body Mass Index based on user's height and weight. |
 | MultiGen | Generates and display multiplication tables for a given number. |
