@@ -64,3 +64,9 @@ The project is divided into three Java Classes:
 
 3. **Interfacer.java**:
    - Manages user interaction, including input and output operations.
+
+## Educational Notes
+- **Integer.parseInt and Integer.toBinaryString**: These are the core methods used for converting between binary and decimal numbers. `Integer.parseInt` with a radix of 2 is used to interpret a binary string as a decimal integer, while `Integer.toBinaryString` is used to convert a decimal integer to a binary string.
+- **Exception Handling**: The `Converter.java` class includes exception handling (specifically `NumberFormatException`) to manage cases where the user inputs an invalid binary string, ensuring the program doesn't crash and can handle errors carefully.
+- **Modular Design**: The application is designed using a modular approach, with separate classes handling different responsibilities. This separation of concerns makes the code easier to maintain and understand.
+- **Input and Output Handling**: The `Interfacer.java` class abstracts the user input and output operations, allowing the main logic in `Bitdec.java` to remain focused on processing and control flow rather than on user interaction details.
