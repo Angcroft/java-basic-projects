@@ -1,28 +1,29 @@
+/**
+ * The Converter class contains methods for converting between binary and decimal numbers.
+ * It handles the core logic of the conversion processes.
+ */
 public class Converter {
 
-    // Binary to Decimal
-    public static int binToDec(String binary) {
-        if (!binary.matches("[01]+")) {
-            throw new NumberFormatException("Invalid binary number");
-        }
-        int decimal = 0;
-        int length = binary.length();
-        for (int i = 0; i < length; i++) {
-            if (binary.charAt(length - 1 - i) == '1') {
-                decimal += 1 << i; // Use bitwise shift for power of 2
-            }
-        }
-        return decimal;
+    /**
+     * Converts a binary string to its decimal equivalent.
+     * 
+     * @param binaryStr the binary string to be converted.
+     * @return the decimal equivalent of the binary string.
+     * @throws NumberFormatException if the binary string is not valid.
+     */
+    public int binaryToDecimal(String binaryStr) throws NumberFormatException {
+        // Convert the binary string to a decimal integer using base 2
+        return Integer.parseInt(binaryStr, 2);
     }
 
-    // Decimal to Binary
-    public static String decToBin(int decimal) {
+    /**
+     * Converts a decimal integer to its binary string equivalent.
+     * 
+     * @param decimal the decimal number to be converted.
+     * @return the binary string equivalent of the decimal number.
+     */
+    public String decimalToBinary(int decimal) {
+        // Convert the decimal number to a binary string
         return Integer.toBinaryString(decimal);
-    }
-
-    // Binary to Hexadecimal
-    public static String binToHex(String binary) {
-        int decimal = binToDec(binary);
-        return Integer.toHexString(decimal).toUpperCase();
     }
 }
