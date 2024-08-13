@@ -1,127 +1,77 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+/**
+ * The Bitdec class serves as the main entry point for the application.
+ * It coordinates the user interaction and conversion processes.
+ */
+public class Bitdec {
 
-public class BitDec {
-    // Main Menu Options
-    private static final int BIN_TO_DEC = 1;
-    private static final int DEC_TO_BIN = 2;
-    private static final int BIN_TO_HEX = 3;
-    private static final int EXIT_PROGRAM = 4;
-
-    // Submenu Options
-    private static final int TRANSFORM_OPTION = 1;
-    private static final int RETURN_OPTION = 2;
+    private final Interfacer interfacer = new Interfacer();
+    private final Converter converter = new Converter();
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        // Create an instance of Bitdec and start the application
+        Bitdec app = new Bitdec();
+        app.run();
+    }
 
-        while (true) {
-            Interfacer.mainMenu();
-            int choice = getValidIntInput(in);
+    /**
+     * Runs the main loop of the application, handling the user's choices and conversions.
+     */
+    private void run() {
+        boolean running = true; // Control variable for the loop
+        while (running) {
+            showMenu(); // Display the menu options
+            int choice = interfacer.getDecimalInput(); // Get the user's choice
 
             switch (choice) {
-                case BIN_TO_DEC:
-                    handleBinToDec(in);
+                case 1:
+                    handleBinaryToDecimal(); // Convert binary to decimal
                     break;
-
-                case DEC_TO_BIN:
-                    handleDecToBin(in);
+                case 2:
+                    handleDecimalToBinary(); // Convert decimal to binary
                     break;
-
-                case BIN_TO_HEX:
-                    handleBinToHex(in);
+                case 3:
+                    running = false; // Exit the loop, thus ending the program
+                    System.out.println("Exiting the program.");
                     break;
-
-                case EXIT_PROGRAM:
-                    System.out.println("Exiting program...");
-                    System.exit(0);
-
                 default:
-                    System.out.println("Invalid option. Please enter a correct number.");
-                    break;
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }
 
-    private static void handleBinToDec(Scanner in) {
-        Interfacer.binToDec();
-        int binChoice = getValidIntInput(in);
+    /**
+     * Displays the menu options to the user.
+     */
+    private void showMenu() {
+        System.out.println("\nBinary-Decimal Converter");
+        System.out.println("1. Convert Binary to Decimal");
+        System.out.println("2. Convert Decimal to Binary");
+        System.out.println("3. Exit");
+        System.out.print("Enter your choice: ");
+    }
 
-        switch (binChoice) {
-            case TRANSFORM_OPTION:
-                System.out.println("Input a binary number: ");
-                String binInput = in.next();
-                try {
-                    int decResult = Converter.binToDec(binInput);
-                    System.out.println("Decimal value: " + decResult);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid binary number. Please try again.");
-                }
-                break;
-
-            case RETURN_OPTION:
-                break;
-
-            default:
-                System.out.println("Invalid option. Please enter a correct number.");
-                break;
+    /**
+     * Handles the conversion from binary to decimal.
+     * It interacts with the Interfacer and Converter classes to perform the conversion.
+     */
+    private void handleBinaryToDecimal() {
+        try {
+            String binary = interfacer.getBinaryInput(); // Get binary input from the user
+            int decimal = converter.binaryToDecimal(binary); // Convert binary to decimal
+            interfacer.showDecimalOutput(decimal); // Show the result to the user
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid binary number. Please try again.");
         }
     }
 
-    private static void handleDecToBin(Scanner in) {
-        Interfacer.decToBin();
-        int decChoice = getValidIntInput(in);
-
-        switch (decChoice) {
-            case TRANSFORM_OPTION:
-                System.out.println("Input a decimal number: ");
-                int decInput = getValidIntInput(in);
-                String binResult = Converter.decToBin(decInput);
-                System.out.println("Binary value: " + binResult);
-                break;
-
-            case RETURN_OPTION:
-                break;
-
-            default:
-                System.out.println("Invalid option. Please enter a correct number.");
-                break;
-        }
-    }
-
-    private static void handleBinToHex(Scanner in) {
-        Interfacer.binToHex();
-        int binHexChoice = getValidIntInput(in);
-
-        switch (binHexChoice) {
-            case TRANSFORM_OPTION:
-                System.out.println("Input a binary number: ");
-                String binHexInput = in.next();
-                try {
-                    String hexResult = Converter.binToHex(binHexInput);
-                    System.out.println("Hexadecimal value: " + hexResult);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid binary number. Please try again.");
-                }
-                break;
-
-            case RETURN_OPTION:
-                break;
-
-            default:
-                System.out.println("Invalid option. Please enter a correct number.");
-                break;
-        }
-    }
-
-    private static int getValidIntInput(Scanner in) {
-        while (true) {
-            try {
-                return in.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number:");
-                in.next(); // Clear the invalid input
-            }
-        }
+    /**
+     * Handles the conversion from decimal to binary.
+     * It interacts with the Interfacer and Converter classes to perform the conversion.
+     */
+    private void handleDecimalToBinary() {
+        int decimal = interfacer.getDecimalInput(); // Get decimal input from the user
+        String binary = converter.decimalToBinary(decimal); // Convert decimal to binary
+        interfacer.showBinaryOutput(binary); // Show the result to the user
     }
 }
+
